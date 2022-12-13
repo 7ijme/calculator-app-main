@@ -31,6 +31,7 @@ for (const button of buttons) {
 			answer = 0;
 			input = "0";
 			answerOutput.innerHTML = answer;
+			updateFontSize();
 		};
 	} else if (button.classList.contains("equals")) {
 		button.onclick = () => {
@@ -40,6 +41,7 @@ for (const button of buttons) {
 					answer = eval(input.replace(/x/g, "*")).toString();
 					input = answer;
 					answerOutput.innerHTML = parseFloat(answer).toLocaleString("en-US");
+					updateFontSize();
 				} catch {}
 			}
 		};
@@ -48,13 +50,11 @@ for (const button of buttons) {
 			input = input.slice(0, -1);
 			if (input.length === 0) input = "0";
 			answerOutput.innerHTML = input;
+			updateFontSize();
 		};
 	} else {
 		button.onclick = () => {
-			// console.log(
-			// 	button.innerText,
-			// 	["+", "-", "x", "/"].some((o) => input.includes(o))
-			// );
+			if (answerOutput.innerHTML.length >= 40) return;
 			if (["+", "-", "x", "/"].includes(button.innerText)) {
 				if (["+", "-", "x", "/"].some((o) => input.includes(o))) {
 					input = input.replace(/[\+\-x\/]/g, button.innerText);
@@ -79,6 +79,19 @@ for (const button of buttons) {
 			}
 
 			answerOutput.innerHTML = input;
+			updateFontSize();
 		};
+	}
+}
+
+function updateFontSize() {
+	// console.log(answerOutput.innerHTML.length);
+	if (answerOutput.innerHTML.length >= 10) {
+		answerOutput.style.fontSize = `${1 - answerOutput.innerHTML.length / 100}em`;
+		if (answerOutput.innerHTML.length >= 20) {
+			answerOutput.style.fontSize = `${0.8 - answerOutput.innerHTML.length / 100}em`;
+		}
+	} else {
+		answerOutput.style.fontSize = "1.6em";
 	}
 }

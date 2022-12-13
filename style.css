@@ -76,6 +76,7 @@ body .content {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 body header {
   -webkit-user-select: none;
