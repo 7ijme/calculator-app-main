@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  transition: background 250ms linear;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "League Spartan", sans-serif;
+  font-size: 32px;
+  background-color: var(--main-background);
+  color: var(--primary);
+}
+body.theme-1 {
+  --main-background: hsl(222, 26%, 31%);
+  --keypad-background: hsl(223, 31%, 20%);
+  --answer-background: hsl(224, 36%, 15%);
+  --key-del-background: hsl(225, 21%, 49%);
+  --key-del-shadow: hsl(224, 28%, 35%);
+  --key-equals-background: hsl(6, 63%, 50%);
+  --key-equals-shadow: hsl(6, 70%, 34%);
+  --key-numbers-background: hsl(30, 25%, 89%);
+  --key-numbers-shadow: hsl(28, 16%, 65%);
+  --primary: hsl(0, 0%, 100%);
+  --secondary: hsl(221, 14%, 31%);
+}
+body.theme-1 .ball {
+  left: 5px;
+}
+body.theme-2 {
+  --main-background: hsl(0, 0%, 90%);
+  --keypad-background: hsl(0, 5%, 81%);
+  --answer-background: hsl(0, 0%, 93%);
+  --key-del-background: hsl(185, 42%, 37%);
+  --key-del-shadow: hsl(185, 58%, 25%);
+  --key-equals-background: hsl(25, 98%, 40%);
+  --key-equals-shadow: hsl(25, 99%, 27%);
+  --key-numbers-background: hsl(45, 7%, 89%);
+  --key-numbers-shadow: hsl(35, 11%, 61%);
+  --primary: hsl(0, 0%, 100%);
+  --secondary: hsl(60, 10%, 19%);
+  color: var(--secondary);
+}
+body.theme-2 .ball {
+  transform: translateX(calc(-50% - 2px));
+  left: 50%;
+}
+body.theme-3 {
+  --main-background: hsl(268, 75%, 9%);
+  --keypad-background: hsl(268, 71%, 12%);
+  --answer-background: hsl(268, 71%, 12%);
+  --key-del-background: hsl(281, 89%, 26%);
+  --key-del-shadow: hsl(285, 91%, 52%);
+  --key-equals-background: hsl(176, 100%, 44%);
+  --key-equals-shadow: hsl(177, 92%, 70%);
+  --key-numbers-background: hsl(268, 47%, 21%);
+  --key-numbers-shadow: hsl(290, 70%, 36%);
+  --primary: hsl(0, 0%, 100%);
+  --secondary: hsl(52, 100%, 62%);
+  color: var(--secondary);
+}
+body.theme-3 .equals {
+  color: hsl(198deg, 20%, 13%) !important;
+}
+body.theme-3 .ball {
+  transform: translateX(-100%);
+  left: calc(100% - 5px);
+}
+body .content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body header {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+}
+body header .title {
+  margin-right: auto;
+}
+body header .theme {
+  text-transform: uppercase;
+  margin: calc(1em + 5px) 0 0 0;
+  font-size: 0.5em;
+}
+body header .theme-switcher {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 0 15px;
+  position: relative;
+}
+body header .theme-switcher .themes {
+  z-index: 1;
+  position: absolute;
+  cursor: pointer;
+  font-size: 0.4em;
+  width: 75px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  top: 0;
+  height: 100%;
+}
+body header .theme-switcher .themes span {
+  padding: 0 8px;
+  flex-grow: 1;
+  margin: 0 0 5px 0;
+}
+body header .theme-switcher .themes span:first-of-type {
+  text-align: left;
+}
+body header .theme-switcher .themes span:last-of-type {
+  text-align: right;
+}
+body header .theme-switcher:hover .ball {
+  filter: brightness(150%);
+}
+body header .theme-switcher .slider {
+  background-color: var(--keypad-background);
+  width: 75px;
+  padding: 5px 0;
+  border-radius: 20px;
+  height: 25px;
+  position: relative;
+  margin-top: 20px;
+}
+body header .theme-switcher .slider .ball {
+  position: absolute;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background-color: var(--key-equals-background);
+  transition: left 250ms linear, right 250ms linear;
+}
+body .answer {
+  margin: 0 20px;
+  padding: 30px 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--answer-background);
+  border-radius: 10px;
+}
+body .answer h1 {
+  font-size: 1.6em;
+}
+body .numpad {
+  flex-grow: 1;
+  background-color: var(--keypad-background);
+  border-radius: 10px;
+  margin: 25px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body .numpad .grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 15px;
+}
+body .numpad .grid .key {
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0px;
+  font-size: 1em;
+  background-color: var(--key-numbers-background);
+  color: var(--secondary);
+  box-shadow: 0px 4px var(--key-numbers-shadow);
+}
+body .numpad .grid .key:hover {
+  filter: brightness(150%);
+}
+body .numpad .grid .key span {
+  display: block;
+}
+body .numpad .grid .key.equals, body .numpad .grid .key.del, body .numpad .grid .key.reset {
+  color: var(--primary);
+  font-size: 0.7em;
+}
+body .numpad .grid .key.del {
+  background-color: var(--key-del-background);
+  box-shadow: 0px 4px var(--key-del-shadow);
+}
+body .numpad .grid .key.reset {
+  grid-column: 1/3;
+  background-color: var(--key-del-background);
+  box-shadow: 0px 4px var(--key-del-shadow);
+}
+body .numpad .grid .key.equals {
+  grid-column: 3/5;
+  box-shadow: 0px 4px var(--key-equals-shadow);
+  background-color: var(--key-equals-background);
+}
+
+@media only screen and (min-width: 768px) {
+  body .content {
+    width: clamp(500px, 50vw, 60vw);
+    max-height: 800px;
+  }
+}/*# sourceMappingURL=style.css.map */
