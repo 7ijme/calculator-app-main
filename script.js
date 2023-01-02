@@ -55,13 +55,13 @@ for (const button of buttons) {
 	} else {
 		button.onclick = () => {
 			if (answerOutput.innerHTML.length >= 40) return;
-			if (["+", "-", "x", "/"].includes(button.innerText)) {
+			if (["+", "-", "x", "/"].includes(button.innerText.trim())) {
 				if (["+", "-", "x", "/"].some((o) => input.includes(o))) {
-					input = input.replace(/[\+\-x\/]/g, button.innerText);
+					input = input.replace(/[\+\-x\/]/g, button.innerText.trim());
 				} else {
 					input += button.innerText.trim();
 				}
-			} else if (button.innerText == ".") {
+			} else if (button.innerText.trim() == ".") {
 				if (
 					input
 						.split(/[\+\-x\/]/)
@@ -72,7 +72,7 @@ for (const button of buttons) {
 				input += ".";
 			} else {
 				if (input === "0") {
-					input = button.innerText;
+					input = button.innerText.trim();
 				} else {
 					input += button.innerText.trim();
 				}
