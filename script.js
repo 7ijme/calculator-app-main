@@ -35,7 +35,7 @@ for (const button of buttons) {
 		};
 	} else if (button.classList.contains("equals")) {
 		button.onclick = () => {
-			let splitted = input.split(/[\+\-x\/]/);
+			let splitted = input.replace(" ","").split(/[\+\-x\/]/);
 			if (!splitted.some((s) => [".", ""] == s)) {
 				try {
 					answer = eval(input.replace(/x/g, "*")).toString();
@@ -59,7 +59,7 @@ for (const button of buttons) {
 				if (["+", "-", "x", "/"].some((o) => input.includes(o))) {
 					input = input.replace(/[\+\-x\/]/g, button.innerText);
 				} else {
-					input += button.innerText;
+					input += button.innerText.trim();
 				}
 			} else if (button.innerText == ".") {
 				if (
@@ -78,7 +78,7 @@ for (const button of buttons) {
 				}
 			}
 
-			answerOutput.innerHTML = input;
+			answerOutput.innerHTML = input.trim();
 			updateFontSize();
 		};
 	}
