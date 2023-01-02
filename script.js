@@ -74,7 +74,7 @@ for (const button of buttons) {
 				if (input === "0") {
 					input = button.innerText;
 				} else {
-					input += button.innerText;
+					input += button.innerText.trim();
 				}
 			}
 
